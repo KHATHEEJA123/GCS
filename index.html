@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Geela Creative Space – Ideas That Inspire</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+
+  <style>
+    /* ─── CSS Variables ─────────────────────────────────────── */
+    :root {
+      --navy:   #1B3A6B;
+      --gold:   #F5A623;
+      --gold-lt:#FFD07B;
+      --dark:   #0D1B35;
+      --light:  #F8F5F0;
+      --white:  #FFFFFF;
+      --grey:   #6B7280;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'DM Sans', sans-serif;
+    }
+
+    /* ─── Reset & Base ──────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--white);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ─── Navbar ────────────────────────────────────────────── */
+    .navbar {
+      background: rgba(11, 27, 53, 0.96);
+      backdrop-filter: blur(14px);
+      padding: 1rem 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 999;
+      transition: padding .3s;
+      border-bottom: 1px solid rgba(245,166,35,.12);
+    }
+    .navbar.scrolled { padding: .6rem 0; }
+    .navbar-brand { display: flex; align-items: center; gap: .6rem; }
+    .navbar-brand .brand-g {
+      width: 42px; height: 42px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 900;
+      color: var(--navy);
+      font-size: 1.3rem;
+      box-shadow: 0 0 20px rgba(245,166,35,.4);
+    }
+    .navbar-brand .brand-text { line-height: 1; }
+    .navbar-brand .brand-name {
+      color: var(--white);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: .02em;
+    }
+    .navbar-brand .brand-sub {
+      color: var(--gold);
+      font-size: .62rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+    .navbar-nav .nav-link {
+      color: rgba(255,255,255,.78) !important;
+      font-size: .88rem;
+      font-weight: 500;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      padding: .4rem .9rem !important;
+      transition: color .25s;
+      position: relative;
+    }
+    .navbar-nav .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 50%; right: 50%;
+      height: 2px;
+      background: var(--gold);
+      transition: left .3s, right .3s;
+    }
+    .navbar-nav .nav-link:hover { color: var(--gold) !important; }
+    .navbar-nav .nav-link:hover::after { left: .9rem; right: .9rem; }
+    .btn-nav-cta {
+      background: var(--gold);
+      color: var(--navy) !important;
+      border-radius: 50px;
+      padding: .42rem 1.3rem !important;
+      font-weight: 600;
+      font-size: .82rem;
+      letter-spacing: .08em;
+      transition: background .25s, box-shadow .25s, transform .2s;
+    }
+    .btn-nav-cta:hover {
+      background: var(--gold-lt);
+      box-shadow: 0 0 22px rgba(245,166,35,.5);
+      transform: translateY(-1px);
+    }
+
+    /* ─── Hero ──────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      background: var(--dark);
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    /* animated mesh background */
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 80% 30%, rgba(245,166,35,.18) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 70% at 20% 70%, rgba(27,58,107,.6) 0%, transparent 70%);
+      animation: meshPulse 7s ease-in-out infinite alternate;
+    }
+    @keyframes meshPulse {
+      from { opacity: .8; transform: scale(1); }
+      to   { opacity: 1;  transform: scale(1.04); }
+    }
+    /* floating orbs */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      animation: orbFloat 10s ease-in-out infinite alternate;
+    }
+    .orb-1 { width: 420px; height: 420px; background: rgba(245,166,35,.14); top: -10%; right: -6%; animation-delay: 0s; }
+    .orb-2 { width: 300px; height: 300px; background: rgba(27,58,107,.55); bottom: 0; left: -5%; animation-delay: -4s; }
+    .orb-3 { width: 200px; height: 200px; background: rgba(245,166,35,.09); top: 50%; left: 40%; animation-delay: -2s; }
+    @keyframes orbFloat {
+      from { transform: translate(0,0) scale(1); }
+      to   { transform: translate(30px,-30px) scale(1.06); }
+    }
+    /* grid lines overlay */
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(245,166,35,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(245,166,35,.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-content { position: relative; z-index: 2; }
+    .hero-eyebrow {
+      display: inline-block;
+      background: rgba(245,166,35,.15);
+      border: 1px solid rgba(245,166,35,.35);
+      color: var(--gold);
+      font-size: .75rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      padding: .38rem 1rem;
+      border-radius: 50px;
+      margin-bottom: 1.4rem;
+      animation: fadeUp .8s ease both;
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.08;
+      animation: fadeUp .9s ease .15s both;
+    }
+    .hero-title .accent { color: var(--gold); position: relative; display: inline-block; }
+    .hero-title .accent::after {
+      content: '';
+      position: absolute;
+      bottom: 4px; left: 0; right: 0;
+      height: 4px;
+      background: var(--gold);
+      border-radius: 4px;
+      transform: scaleX(0);
+      transform-origin: left;
+      animation: lineReveal 1s ease .8s forwards;
+    }
+    @keyframes lineReveal { to { transform: scaleX(1); } }
+    .hero-sub {
+      font-size: clamp(.95rem, 2vw, 1.15rem);
+      color: rgba(255,255,255,.68);
+      max-width: 520px;
+      line-height: 1.75;
+      margin: 1.5rem 0 2.4rem;
+      animation: fadeUp 1s ease .3s both;
+    }
+    .hero-ctas { animation: fadeUp 1s ease .45s both; }
+    .btn-primary-gold {
+      background: var(--gold);
+      color: var(--navy);
+      border: none;
+      border-radius: 50px;
+      padding: .85rem 2.2rem;
+      font-weight: 700;
+      font-size: .95rem;
+      letter-spacing: .06em;
+      text-decoration: none;
+      display: inline-flex; align-items: center; gap: .5rem;
+      transition: all .3s;
+      box-shadow: 0 8px 32px rgba(245,166,35,.35);
+    }
+    .btn-primary-gold:hover {
+      background: var(--gold-lt);
+      transform: translateY(-3px);
+      box-shadow: 0 14px 40px rgba(245,166,35,.5);
+      color: var(--navy);
+    }
+    .btn-outline-hero {
+      background: transparent;
+      color: var(--white);
+      border: 1.5px solid rgba(255,255,255,.35);
+      border-radius: 50px;
+      padding: .85rem 2.2rem;
+      font-weight: 500;
+      font-size: .95rem;
+      text-decoration: none;
+      display: inline-flex; align-items: center; gap: .5rem;
+      transition: all .3s;
+    }
+    .btn-outline-hero:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: translateY(-3px);
+    }
+    .hero-stats {
+      animation: fadeUp 1s ease .6s both;
+      border-top: 1px solid rgba(255,255,255,.1);
+      padding-top: 2rem;
+      margin-top: 3rem;
+    }
+    .stat-val {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--gold);
+    }
+    .stat-lbl {
+      font-size: .78rem;
+      color: rgba(255,255,255,.5);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    /* Hero visual card */
+    .hero-visual { position: relative; z-index: 2; animation: fadeIn 1.2s ease .5s both; }
+    .visual-card {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(245,166,35,.2);
+      border-radius: 24px;
+      padding: 2rem;
+      backdrop-filter: blur(12px);
+      position: relative;
+      overflow: hidden;
+    }
+    .visual-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+    }
+    .service-pill {
+      display: inline-flex; align-items: center; gap: .45rem;
+      background: rgba(245,166,35,.12);
+      border: 1px solid rgba(245,166,35,.25);
+      border-radius: 50px;
+      padding: .45rem 1rem;
+      color: var(--gold);
+      font-size: .8rem;
+      font-weight: 500;
+      margin: .25rem;
+      transition: all .3s;
+    }
+    .service-pill:hover {
+      background: var(--gold);
+      color: var(--navy);
+      transform: translateY(-2px);
+    }
+    .service-pill .bi { font-size: .9rem; }
+    .brand-logo-big {
+      font-family: var(--font-display);
+      font-size: 5rem;
+      font-weight: 900;
+      color: rgba(245,166,35,.08);
+      position: absolute;
+      bottom: 1rem; right: 1.5rem;
+      pointer-events: none;
+      letter-spacing: -.04em;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* ─── Section Shared ─────────────────────────────────────── */
+    section { padding: 100px 0; }
+    .section-eyebrow {
+      display: inline-block;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .75rem;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900;
+      color: var(--dark);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    .section-title .accent { color: var(--navy); }
+    .section-desc {
+      font-size: 1rem;
+      color: var(--grey);
+      max-width: 520px;
+      line-height: 1.8;
+    }
+    /* reveal animation */
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── About ──────────────────────────────────────────────── */
+    #about { background: var(--light); }
+    .about-img-wrap {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+    }
+    .about-bg {
+      background: linear-gradient(135deg, var(--navy) 0%, #0D2550 100%);
+      border-radius: 24px;
+      padding: 3rem;
+      height: 420px;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-bg::before {
+      content: '"';
+      font-family: var(--font-display);
+      font-size: 16rem;
+      color: rgba(245,166,35,.06);
+      position: absolute;
+      top: -3rem; left: 1rem;
+      line-height: 1;
+      pointer-events: none;
+    }
+    .about-quote {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.35rem;
+      color: var(--white);
+      line-height: 1.5;
+      position: relative; z-index: 1;
+    }
+    .about-quote-author {
+      color: var(--gold);
+      font-size: .82rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-top: .75rem;
+      position: relative; z-index: 1;
+    }
+    .about-badge {
+      position: absolute;
+      top: 1.5rem; right: 1.5rem;
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: 800;
+      font-size: .78rem;
+      padding: .5rem 1rem;
+      border-radius: 50px;
+      letter-spacing: .08em;
+      z-index: 2;
+    }
+    .about-list-item {
+      display: flex; align-items: flex-start; gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .about-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: rgba(27,58,107,.08);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--navy);
+      font-size: 1.1rem;
+      transition: all .3s;
+    }
+    .about-list-item:hover .about-icon {
+      background: var(--navy);
+      color: var(--gold);
+      transform: scale(1.08);
+    }
+    .about-item-title { font-weight: 600; font-size: .95rem; color: var(--dark); }
+    .about-item-desc { font-size: .85rem; color: var(--grey); line-height: 1.6; }
+
+    /* ─── Services ───────────────────────────────────────────── */
+    #services { background: var(--white); }
+    .service-card {
+      background: var(--white);
+      border: 1.5px solid rgba(0,0,0,.07);
+      border-radius: 20px;
+      padding: 2rem 1.8rem;
+      height: 100%;
+      transition: all .35s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--navy), var(--gold));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .4s ease;
+    }
+    .service-card:hover {
+      border-color: rgba(27,58,107,.2);
+      box-shadow: 0 20px 60px rgba(27,58,107,.1);
+      transform: translateY(-6px);
+    }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon {
+      width: 56px; height: 56px;
+      background: linear-gradient(135deg, var(--navy), #254a8a);
+      border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold);
+      font-size: 1.4rem;
+      margin-bottom: 1.3rem;
+      transition: all .3s;
+    }
+    .service-card:hover .service-icon { transform: rotate(-6deg) scale(1.08); }
+    .service-card-title {
+      font-family: var(--font-display);
+      font-size: 1.18rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: .6rem;
+    }
+    .service-card-desc { font-size: .88rem; color: var(--grey); line-height: 1.7; }
+    .service-tag {
+      display: inline-block;
+      background: rgba(245,166,35,.12);
+      color: var(--gold);
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .25rem .75rem;
+      border-radius: 50px;
+      margin-top: 1rem;
+    }
+
+    /* ─── Why Us ─────────────────────────────────────────────── */
+    #why {
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+    }
+    #why::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 50% 60% at 90% 50%, rgba(245,166,35,.1) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 50% at 10% 50%, rgba(255,255,255,.03) 0%, transparent 60%);
+    }
+    #why .section-title { color: var(--white); }
+    #why .section-desc { color: rgba(255,255,255,.55); }
+    #why .section-eyebrow { color: var(--gold-lt); }
+    .why-card {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      transition: all .35s;
+      position: relative; z-index: 1;
+    }
+    .why-card:hover {
+      background: rgba(245,166,35,.12);
+      border-color: rgba(245,166,35,.35);
+      transform: translateY(-5px);
+    }
+    .why-num {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: rgba(245,166,35,.2);
+      line-height: 1;
+      margin-bottom: .5rem;
+    }
+    .why-card:hover .why-num { color: rgba(245,166,35,.5); }
+    .why-title { color: var(--white); font-weight: 600; font-size: 1rem; margin-bottom: .5rem; }
+    .why-desc { color: rgba(255,255,255,.5); font-size: .85rem; line-height: 1.7; }
+
+    /* ─── Portfolio Ticker ──────────────────────────────────── */
+    #work { background: var(--light); }
+    .ticker-wrap {
+      overflow: hidden;
+      padding: 2rem 0;
+      border-top: 1px solid rgba(0,0,0,.07);
+      border-bottom: 1px solid rgba(0,0,0,.07);
+    }
+    .ticker-track {
+      display: flex;
+      width: max-content;
+      animation: ticker 20s linear infinite;
+    }
+    .ticker-track:hover { animation-play-state: paused; }
+    .ticker-item {
+      flex-shrink: 0;
+      padding: 0 2.5rem;
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: rgba(13,27,53,.3);
+      display: flex; align-items: center; gap: .75rem;
+      white-space: nowrap;
+    }
+    .ticker-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+    @keyframes ticker {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .portfolio-grid { margin-top: 3rem; }
+    .portfolio-card {
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      height: 280px;
+      cursor: pointer;
+    }
+    .portfolio-bg {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      transition: transform .4s ease;
+    }
+    .portfolio-card:hover .portfolio-bg { transform: scale(1.06); }
+    .portfolio-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(13,27,53,.9) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity .4s;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 1.5rem;
+    }
+    .portfolio-card:hover .portfolio-overlay { opacity: 1; }
+    .portfolio-cat {
+      font-size: .72rem; font-weight: 600; letter-spacing: .15em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: .3rem;
+    }
+    .portfolio-name {
+      font-family: var(--font-display);
+      font-size: 1.2rem; font-weight: 700; color: var(--white);
+    }
+    .p1 { background: linear-gradient(135deg, #1B3A6B 0%, #254a8a 100%); }
+    .p2 { background: linear-gradient(135deg, #F5A623 0%, #e0861a 100%); }
+    .p3 { background: linear-gradient(135deg, #0D1B35 0%, #1B3A6B 100%); }
+    .p4 { background: linear-gradient(135deg, #2a4a7f 0%, #F5A623 100%); }
+    .p-icon { font-size: 3.5rem; color: rgba(255,255,255,.25); }
+
+    /* ─── Testimonials ──────────────────────────────────────── */
+    #testimonials { background: var(--white); }
+    .testi-card {
+      background: var(--light);
+      border-radius: 20px;
+      padding: 2rem;
+      border: 1.5px solid transparent;
+      transition: all .35s;
+      height: 100%;
+    }
+    .testi-card:hover {
+      border-color: rgba(245,166,35,.4);
+      box-shadow: 0 16px 50px rgba(27,58,107,.08);
+      transform: translateY(-4px);
+    }
+    .testi-stars { color: var(--gold); font-size: .95rem; margin-bottom: 1rem; }
+    .testi-text { font-size: .92rem; color: var(--grey); line-height: 1.8; font-style: italic; margin-bottom: 1.5rem; }
+    .testi-name { font-weight: 700; color: var(--dark); font-size: .92rem; }
+    .testi-role { font-size: .78rem; color: var(--grey); }
+    .testi-avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--navy);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold); font-weight: 700; font-size: 1.1rem;
+      font-family: var(--font-display);
+      flex-shrink: 0;
+    }
+
+    /* ─── Connect / CTA ─────────────────────────────────────── */
+    #connect {
+      background: var(--dark);
+      position: relative;
+      overflow: hidden;
+    }
+    #connect::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(245,166,35,.07) 0%, transparent 70%);
+    }
+    .connect-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.1;
+    }
+    .connect-title .acc { color: var(--gold); }
+    .connect-desc {
+      color: rgba(255,255,255,.58);
+      font-size: 1rem;
+      max-width: 460px;
+      margin: 1.2rem auto 2.5rem;
+      line-height: 1.75;
+    }
+    .btn-connect {
+      background: var(--gold);
+      color: var(--navy);
+      border: none;
+      border-radius: 50px;
+      padding: 1.05rem 2.8rem;
+      font-weight: 800;
+      font-size: 1rem;
+      letter-spacing: .06em;
+      text-decoration: none;
+      display: inline-flex; align-items: center; gap: .65rem;
+      transition: all .3s;
+      box-shadow: 0 8px 36px rgba(245,166,35,.4);
+    }
+    .btn-connect:hover {
+      background: var(--gold-lt);
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 16px 50px rgba(245,166,35,.55);
+      color: var(--navy);
+    }
+    .connect-socials { margin-top: 2.5rem; }
+    .connect-socials a {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 44px; height: 44px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 50%;
+      color: rgba(255,255,255,.6);
+      font-size: 1.1rem;
+      margin: 0 .35rem;
+      transition: all .3s;
+      text-decoration: none;
+    }
+    .connect-socials a:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--navy);
+      transform: translateY(-3px);
+    }
+
+    /* ─── Footer ─────────────────────────────────────────────── */
+    footer {
+      background: #07111f;
+      padding: 2.5rem 0;
+      border-top: 1px solid rgba(245,166,35,.12);
+    }
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--white);
+    }
+    .footer-logo span { color: var(--gold); }
+    .footer-copy { color: rgba(255,255,255,.35); font-size: .8rem; }
+    .footer-links a {
+      color: rgba(255,255,255,.45);
+      text-decoration: none;
+      font-size: .82rem;
+      margin: 0 .75rem;
+      transition: color .25s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* ─── Responsive tweaks ──────────────────────────────────── */
+    @media (max-width: 768px) {
+      section { padding: 70px 0; }
+      .hero-visual { margin-top: 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════ NAVBAR ═══════════════ -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <div class="brand-g">G</div>
+      <div class="brand-text">
+        <div class="brand-name">Geela</div>
+        <div class="brand-sub">Creative Space</div>
+      </div>
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span style="color:var(--gold)"><i class="bi bi-list fs-3"></i></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="#work">Work</a></li>
+        <li class="nav-item"><a class="nav-link" href="#testimonials">Reviews</a></li>
+        <li class="nav-item ms-lg-3">
+          <a class="nav-link btn-nav-cta" href="https://forms.gle/5whHUCCpQB7pmr6W7" target="_blank" rel="noopener">
+            Connect With Us
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════ HERO ═════════════════ -->
+<section id="hero">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="hero-grid"></div>
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6 hero-content">
+        <div class="hero-eyebrow"><i class="bi bi-stars"></i> &nbsp;Hyderabad's Premier Creative Studio</div>
+        <h1 class="hero-title">
+          Creative <span class="accent">Ideas</span><br/>
+          That Become<br/>Brand Stories
+        </h1>
+        <p class="hero-sub">
+          Content · Design · Film · Edit · Social Media & Personal Branding — all under one roof.
+          We manage brands that <em>inspire</em> and <em>influence</em>.
+        </p>
+        <div class="hero-ctas d-flex flex-wrap gap-3">
+          <a href="https://forms.gle/5whHUCCpQB7pmr6W7" target="_blank" rel="noopener" class="btn-primary-gold">
+            <i class="bi bi-lightning-charge-fill"></i> Start Your Project
+          </a>
+          <a href="#services" class="btn-outline-hero">
+            Our Services <i class="bi bi-arrow-right"></i>
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="row g-4">
+            <div class="col-4">
+              <div class="stat-val">50+</div>
+              <div class="stat-lbl">Brands Managed</div>
+            </div>
+            <div class="col-4">
+              <div class="stat-val">200+</div>
+              <div class="stat-lbl">Campaigns Live</div>
+            </div>
+            <div class="col-4">
+              <div class="stat-val">5M+</div>
+              <div class="stat-lbl">Impressions</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 hero-visual">
+        <div class="visual-card">
+          <div class="brand-logo-big">G</div>
+          <p class="text-center" style="font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:1.4rem;">What We Do</p>
+          <div class="text-center">
+            <div class="service-pill"><i class="bi bi-camera-video-fill"></i> Film & Video</div>
+            <div class="service-pill"><i class="bi bi-brush-fill"></i> Design</div>
+            <div class="service-pill"><i class="bi bi-megaphone-fill"></i> Social Media</div>
+            <div class="service-pill"><i class="bi bi-person-badge-fill"></i> Personal Branding</div>
+            <div class="service-pill"><i class="bi bi-file-richtext-fill"></i> Content Creation</div>
+            <div class="service-pill"><i class="bi bi-scissors"></i> Editing</div>
+            <div class="service-pill"><i class="bi bi-graph-up-arrow"></i> Brand Strategy</div>
+            <div class="service-pill"><i class="bi bi-lightbulb-fill"></i> Creative Direction</div>
+          </div>
+          <div class="mt-3 pt-3" style="border-top:1px solid rgba(245,166,35,.15);">
+            <div class="d-flex align-items-center gap-2 justify-content-center">
+              <div style="width:8px;height:8px;border-radius:50%;background:#22c55e;animation:pulse 2s infinite;"></div>
+              <span style="color:rgba(255,255,255,.55);font-size:.8rem;">Currently accepting new clients</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ ABOUT ════════════════ -->
+<section id="about">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-5 reveal">
+        <div class="about-img-wrap">
+          <div class="about-bg">
+            <div class="about-badge">Est. in Hyderabad</div>
+            <p class="about-quote">"We don't just create content — we craft experiences that make your brand impossible to ignore."</p>
+            <div class="about-quote-author">— Geela Creative Space</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-7 reveal" style="transition-delay:.15s">
+        <div class="section-eyebrow">Who We Are</div>
+        <h2 class="section-title">One Studio.<br/><span class="accent">Infinite</span> Possibilities.</h2>
+        <p class="section-desc mb-4">
+          Geela Creative Space is a full-spectrum creative agency. We blend storytelling, strategy, and stunning visuals to build brands that resonate deeply with modern audiences.
+        </p>
+        <div class="about-list-item">
+          <div class="about-icon"><i class="bi bi-lightbulb-fill"></i></div>
+          <div>
+            <div class="about-item-title">Creative Strategy First</div>
+            <div class="about-item-desc">Every campaign begins with a deep understanding of your brand story and audience goals.</div>
+          </div>
+        </div>
+        <div class="about-list-item">
+          <div class="about-icon"><i class="bi bi-people-fill"></i></div>
+          <div>
+            <div class="about-item-title">Dedicated Brand Team</div>
+            <div class="about-item-desc">Designers, filmmakers, editors and strategists working in perfect sync for your brand.</div>
+          </div>
+        </div>
+        <div class="about-list-item">
+          <div class="about-icon"><i class="bi bi-graph-up-arrow"></i></div>
+          <div>
+            <div class="about-item-title">Results That Inspire</div>
+            <div class="about-item-desc">We measure success not just in likes, but in lasting brand influence and audience loyalty.</div>
+          </div>
+        </div>
+        <a href="https://forms.gle/5whHUCCpQB7pmr6W7" target="_blank" rel="noopener" class="btn-primary-gold mt-2" style="display:inline-flex;">
+          <i class="bi bi-arrow-right-circle-fill"></i> Work With Us
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ SERVICES ═════════════ -->
+<section id="services">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <div class="section-eyebrow">What We Offer</div>
+      <h2 class="section-title">Services Built for<br/><span class="accent">Modern Brands</span></h2>
+      <p class="section-desc mx-auto">Everything your brand needs to stand out, connect, and grow — under one creative roof.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="service-card">
+          <div class="service-icon"><i class="bi bi-camera-video-fill"></i></div>
+          <div class="service-card-title">Film & Video Production</div>
+          <div class="service-card-desc">Brand films, reels, testimonials, product shoots and cinematic storytelling that captivates from the first frame.</div>
+          <span class="service-tag">High-Impact</span>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 reveal" style="transition-delay:.1s">
+        <div class="service-card">
+          <div class="service-icon"><i class="bi bi-brush-fill"></i></div>
+          <div class="service-card-title">Graphic Design</div>
+          <div class="service-card-desc">Logos, brand identities, social creatives, print collateral — design that is visually magnetic and strategically sharp.</div>
+          <span class="service-tag">Brand Identity</span>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 reveal" style="transition-delay:.2s">
+        <div class="service-card">
+          <div class="service-icon"><i class="bi bi-scissors"></i></div>
+          <div class="service-card-title">Post-Production & Editing</div>
+          <div class="service-card-desc">Professional video editing, colour grading, motion graphics and audio sync for polished final outputs every time.</div>
+          <span class="service-tag">Precision Craft</span>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 reveal" style="transition-delay:.1s">
+        <div class="service-card">
+          <div class="service-icon"><i class="bi bi-megaphone-fill"></i></div>
+          <div class="service-card-title">Social Media Management</div>
+          <div class="service-card-desc">Strategic content calendars, community management and platform-specific creative for Instagram, LinkedIn and beyond.</div>
+          <span class="service-tag">Growth-Focused</span>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 reveal" style="transition-delay:.2s">
+        <div class="service-card">
+          <div class="service-icon"><i class="bi bi-person-badge-fill"></i></div>
+          <div class="service-card-title">Personal Branding</div>
+          <div class="service-card-desc">Build a compelling digital persona. We help founders, executives, and creators craft authentic influence online.</div>
+          <span class="service-tag">Authority Building</span>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 reveal" style="transition-delay:.3s">
+        <div class="service-card">
+          <div class="service-icon"><i class="bi bi-file-richtext-fill"></i></div>
+          <div class="service-card-title">Content Creation</div>
+          <div class="service-card-desc">From photo shoots to written narratives — original, platform-native content that sparks conversation and drives engagement.</div>
+          <span class="service-tag">Storytelling</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ WHY US ═══════════════ -->
+<section id="why">
+  <div class="container position-relative" style="z-index:1;">
+    <div class="text-center mb-5 reveal">
+      <div class="section-eyebrow">Why Geela</div>
+      <h2 class="section-title">The Geela Difference</h2>
+      <p class="section-desc mx-auto">We're not just another agency. Here's what makes us the creative partner brands trust.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3 reveal">
+        <div class="why-card">
+          <div class="why-num">01</div>
+          <div class="why-title">All Under One Roof</div>
+          <div class="why-desc">Strategy, design, filming, editing, and SMM — no outsourcing, no fragmented communication.</div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 reveal" style="transition-delay:.1s">
+        <div class="why-card">
+          <div class="why-num">02</div>
+          <div class="why-title">Story-Led Approach</div>
+          <div class="why-desc">Every deliverable is rooted in a narrative that connects your brand to human emotion.</div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 reveal" style="transition-delay:.2s">
+        <div class="why-card">
+          <div class="why-num">03</div>
+          <div class="why-title">Hyderabad's Creative Edge</div>
+          <div class="why-desc">Local market intelligence, global creative standards — the best of both worlds for your brand.</div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 reveal" style="transition-delay:.3s">
+        <div class="why-card">
+          <div class="why-num">04</div>
+          <div class="why-title">Measurable Impact</div>
+          <div class="why-desc">Beautiful work is nothing without results. We track, optimise, and deliver outcomes that matter.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ WORK ═════════════════ -->
+<section id="work">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <div class="section-eyebrow">Our Work</div>
+      <h2 class="section-title">Stories We've Told</h2>
+      <p class="section-desc mx-auto">A glimpse into the brands we've helped inspire and influence.</p>
+    </div>
+  </div>
+  <!-- Ticker -->
+  <div class="ticker-wrap reveal">
+    <div class="ticker-track">
+      <span class="ticker-item"><span class="ticker-dot"></span>Brand Films</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Social Campaigns</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Logo Designs</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Product Videos</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Personal Brands</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Content Series</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Brand Identity</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Event Coverage</span>
+      <!-- duplicate for seamless loop -->
+      <span class="ticker-item"><span class="ticker-dot"></span>Brand Films</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Social Campaigns</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Logo Designs</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Product Videos</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Personal Brands</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Content Series</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Brand Identity</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Event Coverage</span>
+    </div>
+  </div>
+  <div class="container portfolio-grid">
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3 reveal">
+        <div class="portfolio-card">
+          <div class="portfolio-bg p1"><i class="bi bi-camera-video-fill p-icon"></i></div>
+          <div class="portfolio-overlay">
+            <div class="portfolio-cat">Film</div>
+            <div class="portfolio-name">Brand Story Film</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 reveal" style="transition-delay:.1s">
+        <div class="portfolio-card">
+          <div class="portfolio-bg p2"><i class="bi bi-brush-fill p-icon"></i></div>
+          <div class="portfolio-overlay">
+            <div class="portfolio-cat">Design</div>
+            <div class="portfolio-name">Brand Identity</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 reveal" style="transition-delay:.2s">
+        <div class="portfolio-card">
+          <div class="portfolio-bg p3"><i class="bi bi-megaphone-fill p-icon"></i></div>
+          <div class="portfolio-overlay">
+            <div class="portfolio-cat">Social Media</div>
+            <div class="portfolio-name">Campaign Series</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 reveal" style="transition-delay:.3s">
+        <div class="portfolio-card">
+          <div class="portfolio-bg p4"><i class="bi bi-person-badge-fill p-icon"></i></div>
+          <div class="portfolio-overlay">
+            <div class="portfolio-cat">Personal Branding</div>
+            <div class="portfolio-name">CEO Brand Build</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════════ TESTIMONIALS ═══════════════ -->
+<section id="testimonials">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <div class="section-eyebrow">Client Love</div>
+      <h2 class="section-title">What Brands Say About Us</h2>
+      <p class="section-desc mx-auto">The brands we serve are our biggest advocates.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <div class="testi-text">"Geela transformed our Instagram presence completely. Their team understood our brand instantly and delivered content that truly resonated with our audience."</div>
+          <div class="d-flex align-items-center gap-3">
+            <div class="testi-avatar">A</div>
+            <div>
+              <div class="testi-name">Aisha Reddy</div>
+              <div class="testi-role">Founder, Fashion Label</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 reveal" style="transition-delay:.1s">
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <div class="testi-text">"The brand film they created for us went viral locally. Their cinematic approach combined with deep storytelling made our launch unforgettable."</div>
+          <div class="d-flex align-items-center gap-3">
+            <div class="testi-avatar">R</div>
+            <div>
+              <div class="testi-name">Ravi Kumar</div>
+              <div class="testi-role">CEO, Tech Startup</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 reveal" style="transition-delay:.2s">
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <div class="testi-text">"Working with Geela on my personal brand was a game changer. I went from 2K to 30K followers in 4 months with authentic, strategic content."</div>
+          <div class="d-flex align-items-center gap-3">
+            <div class="testi-avatar">P</div>
+            <div>
+              <div class="testi-name">Priya Sharma</div>
+              <div class="testi-role">Business Coach & Speaker</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ CONNECT CTA ══════════ -->
+<section id="connect">
+  <div class="container text-center position-relative" style="z-index:1;">
+    <div class="reveal">
+      <div class="section-eyebrow" style="color:var(--gold-lt);">Let's Create Together</div>
+      <h2 class="connect-title">
+        Ready to Build a Brand<br/>That <span class="acc">Inspires?</span>
+      </h2>
+      <p class="connect-desc">
+        Tell us about your vision. Whether you're launching a brand, growing an existing one, or building your personal influence — we're here.
+      </p>
+      <a href="https://forms.gle/5whHUCCpQB7pmr6W7" target="_blank" rel="noopener" class="btn-connect">
+        <i class="bi bi-send-fill"></i> Connect With Us
+      </a>
+      <div class="connect-socials">
+        <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+        <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+        <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+        <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ FOOTER ═══════════════ -->
+<footer>
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-4 mb-3 mb-md-0">
+        <div class="footer-logo">Geela <span>Creative</span></div>
+        <div class="footer-copy mt-1">Hyderabad's Creative Space</div>
+      </div>
+      <div class="col-md-4 text-center mb-3 mb-md-0">
+        <div class="footer-links">
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#work">Work</a>
+          <a href="https://forms.gle/5whHUCCpQB7pmr6W7" target="_blank" rel="noopener">Contact</a>
+        </div>
+      </div>
+      <div class="col-md-4 text-md-end">
+        <div class="footer-copy">© 2025 Geela Creative Space. All rights reserved.</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // ── Navbar scroll effect
+  const navbar = document.querySelector('.navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // ── Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => observer.observe(r));
+
+  // ── Pulse animation for live badge
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,.4); }
+      50%       { box-shadow: 0 0 0 6px rgba(34,197,94,0); }
+    }
+  `;
+  document.head.appendChild(style);
+</script>
+</body>
+</html>
